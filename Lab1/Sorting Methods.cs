@@ -19,9 +19,7 @@ namespace Lab1
                 {
                     if (toSort[i] > toSort[i + 1])
                     {
-                        int temp = toSort[i];
-                        toSort[i] = toSort[i + 1];
-                        toSort[i + 1] = temp;
+                        Swap(ref toSort[i], ref toSort[i + 1]);
 
                         isSorted = false;
                     }
@@ -38,34 +36,101 @@ namespace Lab1
             {
                 for (int i = 0; i < step; i++)
                 {
-                    toSort = insertSort(toSort, step, i);
+                    toSort = InsertSort(toSort, step, i);
                 }
             }
 
             return toSort;
         }
 
+        //Пирамидальная сортировка
+        public static int[] HeapSort(int[] toSort)
+        {
+            toSort = BuildHeap(toSort);
+            int Length = toSort.Length;
+            while(Length > 0)
+            {
+                Swap(ref toSort[0], ref toSort[Length - 1]);
+                Length--;
+                toSort = Heapify(toSort, 0);
+            }
+
+            return toSort;
+        }
+
+        private static void Swap(ref int first, ref int second)
+        {
+            int temp = first;
+            first = second;
+            second = temp;
+        }
+
         //сортировка вставкой
-        private static int[] insertSort(int[] toSort, int step, int i)
+        private static int[] InsertSort(int[] toSort, int step, int i)
         {
             for (; i + step < toSort.Length; i += step)
             {
                 if (toSort[i + step] < toSort[i])
                 {
+                    Swap(ref toSort[i], ref toSort[i+1]);
+
+/*
                     int temp = toSort[i];
                     toSort[i] = toSort[i + 1];
                     toSort[i + 1] = temp;
-
+*/
                     for (int j = i; j - step >= 0 && toSort[j] < toSort[j - step]; j -= step)
                     {
+                        Swap(ref toSort[i], ref toSort[i+1]);
+
+                        /*
                         temp = toSort[i];
                         toSort[i] = toSort[i + 1];
                         toSort[i + 1] = temp;
+                        */
                     }
                 }
             }
 
             return toSort;
         }
+
+        private static int[] BuildHeap(int[] toSort)
+        {
+            for (int i = toSort.Length / 2 - 1; i>=0; i--)
+            {
+                toSort = Heapify(toSort, i);
+            }
+            return toSort;
+        }
+
+        private static int[] Heapify(int[] toSort, int pos)
+        {
+            bool done = false;
+            while (pos * 2 + 1 < toSort.Length && !done)
+            {
+                int maxSon = pos * 2 + 1;
+                // Сравнение предполагаемых дочерних элементов
+                if (maxSon + 1 < toSort.Length && toSort[maxSon] < toSort[maxSon + 1])
+                {
+                    maxSon++;
+                }
+                // Сравнение предполагаемых корневого и макс. дочернего элемента
+                if (toSort[pos] < toSort[maxSon])
+                {
+                    // Смена местами корневого и дочернего элементов
+                    Swap(ref toSort[pos], ref toSort[maxSon]);
+                    pos = maxSon;
+                }
+                // Смена значения флажка на 1 если ветвь отсортированна
+                else
+                {
+                    done = true;
+                }
+            }
+
+            return toSort;
+        }
+        
     }
 }

@@ -9,7 +9,8 @@ namespace Lab1
 {
     class Program
     {
-        private static List<Sort> sortMethods = new List<Sort>();
+        //private static List<Sort> sortMethods = new List<Sort>();
+        private static List<Tuple<Sort, string>> sortMethods = new List<Tuple<Sort, string>>();
         private static bool isEnded;
         private static int[] sequence;
         private static int iterations = 1;
@@ -18,8 +19,9 @@ namespace Lab1
 
         static void Main(string[] args)
         {
-            sortMethods.Add(Sorting_Methods.BubbleSort);
-            sortMethods.Add(Sorting_Methods.ShellSort);
+            sortMethods.Add(new Tuple<Sort, string>(Sorting_Methods.BubbleSort, "Bubble Sort"));
+            sortMethods.Add(new Tuple<Sort, string>(Sorting_Methods.ShellSort, "Shell Sort"));
+            sortMethods.Add(new Tuple<Sort, string>(Sorting_Methods.HeapSort, "Heap Sort"));
 
             while (!isEnded)
             {
@@ -45,8 +47,23 @@ namespace Lab1
                     sequence = GetSequence(GetTokens(token));
                     break;
 
+                case "checksequence":
+                    CheckSequence();
+                    break;
+
                 case "test":
                     Test();
+                    break;
+
+                case "random":
+                    if (token.Split().Length == 2)
+                    {
+                        RandomizeSequence(int.Parse(token.Split()[1]));
+                    }
+                    else
+                    {
+                        RandomizeSequence();
+                    }
                     break;
 
                 case "exit":
@@ -57,6 +74,27 @@ namespace Lab1
                     Console.WriteLine("Данной команды нет в списке доступных команд."+
                     " Просьба за доступными командами обратиться в хелп по командам с помощью команды help.");
                     break;
+            }
+        }
+
+        static void CheckSequence()
+        {
+            Console.Write('[');
+            for (int i = 0; i < sequence.Length; i++)
+            {
+                Console.Write(sequence[i] + " ");
+            }
+            Console.Write("]\n");
+        }
+
+        static void RandomizeSequence(int length = 1000)
+        {
+            Random random = new Random();
+            sequence = new int[1000];
+
+            for (int i = 0; i < sequence.Length; i++)
+            {
+                sequence[i] = random.Next();
             }
         }
 
@@ -92,10 +130,10 @@ namespace Lab1
                 timer.Restart();
                 for (int i = 0; i < iterations; i++)
                 {
-                    sort(sequence);
+                    sort.Item1(sequence);
                 }
                 timer.Stop();
-                Console.WriteLine(timer.Elapsed);
+                Console.WriteLine(sort.Item2 + " : " + timer.Elapsed);
             }
         }
 
