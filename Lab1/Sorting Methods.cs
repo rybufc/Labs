@@ -8,16 +8,21 @@ namespace Lab1
 {
     public static class Sorting_Methods
     {
-        public static int[] StandartSort(int[] toSort)
+        //Стандартная сортировка шарпа
+        public static int[] StandardSort(int[] sequence)
         {
+            int[] toSort = new int[sequence.Length];
+            sequence.CopyTo(toSort, 0);
             Array.Sort(toSort);
 
             return toSort;
         }
 
         //Пузырёк
-        public static int[] BubbleSort(int[] toSort)
+        public static int[] BubbleSort(int[] sequence)
         {
+            int[] toSort = new int[sequence.Length];
+            sequence.CopyTo(toSort, 0);
             bool isSorted = false;
             while (!isSorted)
             {
@@ -37,8 +42,11 @@ namespace Lab1
         }
 
         //Сортировка Шелла
-        public static int[] ShellSort(int[] toSort)
+        public static int[] ShellSort(int[] sequence)
         {
+            int[] toSort = new int[sequence.Length];
+            sequence.CopyTo(toSort, 0);
+
             for (int step = toSort.Length; step > 0; step /= 2)
             {
                 for (int i = 0; i < step; i++)
@@ -51,8 +59,11 @@ namespace Lab1
         }
 
         //Пирамидальная сортировка
-        public static int[] HeapSort(int[] toSort)
+        public static int[] HeapSort(int[] sequence)
         {
+            int[] toSort = new int[sequence.Length];
+            sequence.CopyTo(toSort, 0);
+
             toSort = BuildHeap(toSort);
             int Length = toSort.Length;
             while(Length > 0)
@@ -81,20 +92,9 @@ namespace Lab1
                 {
                     Swap(ref toSort[i], ref toSort[i+1]);
 
-/*
-                    int temp = toSort[i];
-                    toSort[i] = toSort[i + 1];
-                    toSort[i + 1] = temp;
-*/
                     for (int j = i; j - step >= 0 && toSort[j] < toSort[j - step]; j -= step)
                     {
                         Swap(ref toSort[i], ref toSort[i+1]);
-
-                        /*
-                        temp = toSort[i];
-                        toSort[i] = toSort[i + 1];
-                        toSort[i + 1] = temp;
-                        */
                     }
                 }
             }

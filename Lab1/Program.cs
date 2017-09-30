@@ -22,7 +22,7 @@ namespace Lab1
             sortMethods.Add(new Tuple<Sort, string>(Sorting_Methods.BubbleSort, "Bubble Sort"));
             sortMethods.Add(new Tuple<Sort, string>(Sorting_Methods.ShellSort, "Shell Sort"));
             sortMethods.Add(new Tuple<Sort, string>(Sorting_Methods.HeapSort, "Heap Sort"));
-            sortMethods.Add(new Tuple<Sort, string>(Sorting_Methods.StandartSort, "Array.Sort"));
+            sortMethods.Add(new Tuple<Sort, string>(Sorting_Methods.StandardSort, "Array.Sort"));
 
             while (!isEnded)
             {
@@ -30,9 +30,9 @@ namespace Lab1
             }
         }
 
-        static void getCommand(string token)
+        static void getCommand(string args)
         {
-            string command = token.Split()[0];
+            string command = args.Split()[0];
 
             switch (command)
             {
@@ -41,15 +41,15 @@ namespace Lab1
                     break;
 
                 case "iterations":
-                    iterations = int.Parse(token.Split()[1]);
+                    iterations = int.Parse(args.Split()[1]);
                     break;
 
                 case "sequence":
-                    sequence = GetSequence(GetTokens(token));
+                    sequence = GetSequence(GetTokens(args));
                     break;
 
-                case "checksequence":
-                    CheckSequence();
+                case "getsequence":
+                    GetSequence();
                     break;
 
                 case "test":
@@ -57,9 +57,9 @@ namespace Lab1
                     break;
 
                 case "random":
-                    if (token.Split().Length == 2)
+                    if (args.Split().Length == 2)
                     {
-                        RandomizeSequence(int.Parse(token.Split()[1]));
+                        RandomizeSequence(int.Parse(args.Split()[1]));
                     }
                     else
                     {
@@ -78,7 +78,7 @@ namespace Lab1
             }
         }
 
-        static void CheckSequence()
+        static void GetSequence()
         {
             Console.Write('[');
             for (int i = 0; i < sequence.Length; i++)
@@ -91,7 +91,7 @@ namespace Lab1
         static void RandomizeSequence(int length = 1000)
         {
             Random random = new Random();
-            sequence = new int[1000];
+            sequence = new int[length];
 
             for (int i = 0; i < sequence.Length; i++)
             {
@@ -126,6 +126,8 @@ namespace Lab1
         {
             Stopwatch timer = new Stopwatch();
 
+            Console.WriteLine("Итераций: {0}, Размер массива: {1}", iterations, sequence.Length);
+
             foreach (var sort in sortMethods)
             {
                 timer.Restart();
@@ -136,6 +138,7 @@ namespace Lab1
                 timer.Stop();
                 Console.WriteLine(sort.Item2 + " : " + timer.Elapsed);
             }
+            Console.WriteLine();
         }
 
         static void Help()
