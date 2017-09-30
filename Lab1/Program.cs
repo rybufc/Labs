@@ -10,7 +10,7 @@ namespace Lab1
     class Program
     {
         //private static List<Sort> sortMethods = new List<Sort>();
-        private static List<Tuple<Sort, string>> sortMethods = new List<Tuple<Sort, string>>();
+        private static readonly List<Tuple<Sort, string>> sortMethods = new List<Tuple<Sort, string>>();
         private static bool isEnded;
         private static int[] sequence;
         private static int iterations = 1;
@@ -22,6 +22,7 @@ namespace Lab1
             sortMethods.Add(new Tuple<Sort, string>(Sorting_Methods.BubbleSort, "Bubble Sort"));
             sortMethods.Add(new Tuple<Sort, string>(Sorting_Methods.ShellSort, "Shell Sort"));
             sortMethods.Add(new Tuple<Sort, string>(Sorting_Methods.HeapSort, "Heap Sort"));
+            sortMethods.Add(new Tuple<Sort, string>(Sorting_Methods.StandartSort, "Array.Sort"));
 
             while (!isEnded)
             {

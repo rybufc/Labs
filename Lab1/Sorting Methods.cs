@@ -8,6 +8,13 @@ namespace Lab1
 {
     public static class Sorting_Methods
     {
+        public static int[] StandartSort(int[] toSort)
+        {
+            Array.Sort(toSort);
+
+            return toSort;
+        }
+
         //Пузырёк
         public static int[] BubbleSort(int[] toSort)
         {
