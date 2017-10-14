@@ -43,9 +43,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Application.cs" />
+    <Compile Include="Commands\ExitCommand.cs" />
+    <Compile Include="Commands\SequenceCommand.cs" />
+    <Compile Include="Commands\HelpCommand.cs" />
+    <Compile Include="ICommand.cs" />
+    <Compile Include="Commands\NotFoundCommand.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Commands\RandomizeCommand.cs" />
+    <Compile Include="Commands\SetIterationsCommand.cs" />
     <Compile Include="Sorting Methods.cs" />
+    <Compile Include="Commands\TestingCommand.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
