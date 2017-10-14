@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Lab1
 {
     class RandomizeCommand : ICommand
     {
-        private Application app;
+        private readonly Application app;
 
         public string Name => "random";
         public string Help => "Создаёт новый случайный массив для сортировки.";
@@ -36,10 +32,10 @@ namespace Lab1
                 length = parameters.Length == 1 ? int.Parse(parameters[0]) : 5000;
                 if (length < 2)
                 {
-                    throw  new ArgumentException();
+                    throw new ArgumentException();
                 }
             }
-            catch (Exception err)
+            catch (Exception)
             {
                 Console.WriteLine(errMessage);
                 return;
@@ -54,6 +50,6 @@ namespace Lab1
             }
         }
 
-        private string errMessage => "Пожалуйста, прочтите синтаксис исполmзования команды с помощью 'help random'";
+        private string errMessage => "Пожалуйста, прочтите синтаксис использования команды с помощью 'help random'";
     }
 }

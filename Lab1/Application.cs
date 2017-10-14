@@ -12,7 +12,7 @@ namespace Lab1
 
         public readonly List<Tuple<Sort, string>> sortMethods = new List<Tuple<Sort, string>>();
         public int[] sequence { get; set; }
-        public int iterations = 1;
+        public int iterations = 100;
 
         public delegate int[] Sort(int[] toSort);
 

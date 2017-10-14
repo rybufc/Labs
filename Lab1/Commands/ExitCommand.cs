@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Lab1
+﻿namespace Lab1
 {
     public class ExitCommand : ICommand
     {
-        Application app;
+        readonly Application app;
         public ExitCommand(Application app)
         {
             this.app = app;
@@ -17,7 +11,8 @@ namespace Lab1
         public string Help => "Выход из программы";
 
         public string[] Synonyms => new[] { "quit", "bye" };
-        public string Description => "Длинное и подробное описание команды выхода ";
+        public string Description => "При использовании команды 'exit', программа закроется. " +
+                                     "Внезапно? ОоОоОо";
 
         public void Execute(params string[] parameters)
         {

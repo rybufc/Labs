@@ -5,7 +5,7 @@ namespace Lab1
 {
     class TestingCommand : ICommand
     {
-        private Application app;
+        private readonly Application app;
 
         public string Name => "test";
         public string Help => "прогоняет методы сортировки по массиву.";
@@ -41,7 +41,7 @@ namespace Lab1
                     sort.Item1(app.sequence);
                 }
                 timer.Stop();
-                Console.WriteLine(sort.Item2 + " : " + timer.Elapsed);
+                Console.WriteLine(sort.Item2 + " : " + timer.Elapsed.TotalMilliseconds / app.iterations + " ms");
             }
             Console.WriteLine();
         }

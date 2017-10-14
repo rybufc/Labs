@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Lab1
 {
     class SequenceCommand : ICommand
     {
-        private Application app;
+        private readonly Application app;
 
         public string Name => "sequence";
         public string Help => "Работа с массивом для сортировки.";
@@ -29,6 +24,15 @@ namespace Lab1
         {
             if (parameters.Length == 0)
             {
+                if (app.sequence == null)
+                {
+                    Console.WriteLine("Не задан исходный массив для измерения скорости работы алгоритмов. " +
+                                      "Пожалуйста, задайте его вручную с помощью команды 'sequence' или " +
+                                      "сгенерируйте его случайно с помощью команды 'random'. " +
+                                      "Если вы хотите подробнее узнать об этих коммандах, введите 'help'");
+                    return;
+                }
+
                 Console.Write('[');
                 for (int i = 0; i < app.sequence.Length; i++)
                 {
@@ -38,20 +42,27 @@ namespace Lab1
                 return;
             }
 
-            try
+            int[] newSequence = new int[parameters.Length];
+            bool errorFound = false;
+            for (int i = 0; i < parameters.Length; i++)
             {
-                int[] newSequence = new int[parameters.Length];
-                for (int i = 0; i < parameters.Length; i++)
+                try
                 {
                     newSequence[i] = int.Parse(parameters[i]);
                 }
-
-                app.sequence = newSequence;
+                catch (Exception err)
+                {
+                    Console.WriteLine("В элементе массива №" + i + " (" + parameters[i]
+                        + ") допущена следующая ошибка: " + err.Message);
+                    errorFound = true;
+                }
             }
-            catch (Exception err)
+            if (errorFound)
             {
-                Console.WriteLine(err.Message);
+                return;
             }
+
+            app.sequence = newSequence;
             
         }
     }

@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Lab1
 {
     public class HelpCommand : ICommand
     {
-        Application app;
+        readonly Application app;
         public string Name => "help";
         public string Help => "Краткая помощь по всем командам";
 
