@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Application.cs" />
     <Compile Include="Commands\ExitCommand.cs" />
+    <Compile Include="Commands\LoadFromFileCommand.cs" />
     <Compile Include="Commands\SequenceCommand.cs" />
     <Compile Include="Commands\HelpCommand.cs" />
     <Compile Include="ICommand.cs" />

@@ -2,10 +2,10 @@
 {
     public class Program
     {
-        static void Main()
+        static void Main(string[] args)
         {
             Application app = new Application();
-            app.Run();
+            app.Run(args);
         }
     }
 }

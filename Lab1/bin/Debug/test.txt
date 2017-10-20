@@ -1,0 +1,9 @@
+help
+
+random
+iterations 10
+test
+
+
+
+exit

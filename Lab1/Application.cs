@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace Lab1
 {
@@ -9,6 +10,7 @@ namespace Lab1
         readonly Dictionary<string, ICommand> commandMap = new Dictionary<string, ICommand>();
         readonly NotFoundCommand notFound = new NotFoundCommand();
         private bool keepRunning = true;
+        private Queue<string> commandsQueue = new Queue<string>();
 
         public readonly List<Tuple<Sort, string>> sortMethods = new List<Tuple<Sort, string>>();
         public int[] sequence { get; set; }
@@ -16,7 +18,7 @@ namespace Lab1
 
         public delegate int[] Sort(int[] toSort);
 
-        public void Run()
+        public void Run(string[] args)
         {
             sortMethods.Add(new Tuple<Sort, string>(SortingMethods.BubbleSort, "Bubble Sort"));
             sortMethods.Add(new Tuple<Sort, string>(SortingMethods.ShellSort, "Shell Sort"));
@@ -30,10 +32,37 @@ namespace Lab1
             AddCommand(new SetIterationsCommand(this));
             AddCommand(new TestingCommand(this));
 
+            if (args.Length > 0)
+            {
+                string directory = AppDomain.CurrentDomain.BaseDirectory;
+                
+                try
+                {
+                    FileStream file = new FileStream(directory + args[0], FileMode.Open, FileAccess.Read);
+                    StreamReader reader = new StreamReader(file);
+                    while (!reader.EndOfStream)
+                    {
+                        commandsQueue.Enqueue(reader.ReadLine());
+                    }
+                    reader.Close();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+            }
+
             while (keepRunning)
             {
-                Console.Write("Its your command: ");
-                getCommand(Console.ReadLine());
+                if (commandsQueue.Count == 0)
+                {
+                    Console.Write("Its your command: ");
+                    commandsQueue.Enqueue(Console.ReadLine());
+                }
+                while (commandsQueue.Count > 0)
+                {
+                    getCommand(commandsQueue.Dequeue());
+                }
             }
         }
 
