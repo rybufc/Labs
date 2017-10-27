@@ -14,7 +14,7 @@
         public string Description => "При использовании команды 'exit', программа закроется. " +
                                      "Внезапно? ОоОоОо";
 
-        public void Execute(params string[] parameters)
+        public void Execute(params string[] args)
         {
             app.Exit();
         }

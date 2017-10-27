@@ -10,6 +10,6 @@
         string Help { get; }
         string Description { get; }
         string[] Synonyms { get; }
-        void Execute(params string[] parameters);
+        void Execute(params string[] args);
     }
 }

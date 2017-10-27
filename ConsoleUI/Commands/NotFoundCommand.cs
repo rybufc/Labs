@@ -10,7 +10,7 @@ namespace ConsoleUI
 
         public string Description => "";
 
-        public void Execute(params string[] parameters)
+        public void Execute(params string[] args)
         {
             Console.WriteLine("Команда `{0}`  не найдена ", Name);
         }

@@ -5,8 +5,8 @@ namespace Lab2
 {
     public struct Rational
     {
-        public int Numerator { get; set; }
-        public int Denominator { get; set; }
+        public int Numerator { get; private set; }
+        public int Denominator { get; private set; }
         public int Base
         {
             get
@@ -91,7 +91,7 @@ namespace Lab2
                 return false;
             }
 
-            Regex regexp = new Regex("^((\\d+)([.])?)?((\\d+)[:](\\d+))?$");
+            Regex regexp = new Regex("^((-?\\d+)([.])?)?((-?\\d+)[:](-?\\d+))?$");
             if (!regexp.IsMatch(input))
             {
                 result = default(Rational);

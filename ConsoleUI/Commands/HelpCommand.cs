@@ -19,11 +19,11 @@ namespace ConsoleUI
             this.app = app;
         }
 
-        public void Execute(params string[] parameters)
+        public void Execute(params string[] args)
         {
-            if (parameters.Length == 1)
+            if (args.Length == 1)
             {
-                string command = parameters[0];
+                string command = args[0];
                 foreach (ICommand cmd in app.Commands)
                 {
                     if (cmd.Name == command)
