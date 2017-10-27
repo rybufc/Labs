@@ -108,18 +108,18 @@ namespace Lab2
                 int numerator = int.Parse(tokens[1].Split(':')[0]);
                 int denominator = int.Parse(tokens[1].Split(':')[1]);
                 result = new Rational(numerator + z * denominator, denominator);
-                return true;
             }
-
-            if (tokens[0].Split(':').Length == 2)
+            else if (tokens[0].Split(':').Length == 2)
             {
                 int numerator = int.Parse(tokens[0].Split(':')[0]);
                 int denominator = int.Parse(tokens[0].Split(':')[1]);
                 result = new Rational(numerator, denominator);
-                return true;
+            }
+            else
+            {
+                result = new Rational(int.Parse(tokens[0]), 1);
             }
 
-            result = new Rational(int.Parse(tokens[0]), 1);
             return true;
         }
 
