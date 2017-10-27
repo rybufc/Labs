@@ -32,6 +32,11 @@ namespace Lab2
 
         public Rational(int numerator, int denominator)
         {
+            if (denominator == 0)
+            {
+                throw new ArgumentException("Знаменатель не может быть равен нулю.");
+            }
+
             Numerator = numerator;
             Denominator = denominator;
             Even();
