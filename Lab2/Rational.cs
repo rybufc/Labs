@@ -66,15 +66,14 @@ namespace Lab2
 
             if (numerator == 0)
             {
-                return string.Format("{}", z);
+                return $"{z}";
             }
             if (z == 0)
             {
-                return string.Format("{}:{}", numerator, Denominator);
+                return $"{numerator}:{Denominator}";
             }
 
-            return string.Format("{}.{}:{}", z, numerator, Denominator
-            );
+            return $"{z}.{numerator}:{Denominator}";
         }
 
         /// <summary>
@@ -94,7 +93,7 @@ namespace Lab2
                 return false;
             }
 
-            Regex regexp = new Regex("^((\\d+)[.])?((\\d+)[:](\\d+))?$");
+            Regex regexp = new Regex("^((\\d+)([.])?)?((\\d+)[:](\\d+))?$");
             if (!regexp.IsMatch(input))
             {
                 result = default(Rational);
@@ -154,6 +153,7 @@ namespace Lab2
             return first;
         }
 
+        #region Операторы
         public static Rational operator +(Rational r1, Rational r2)
         {
             int denominator = LeastCommonMultiple(r1.Denominator, r2.Denominator);
@@ -223,5 +223,6 @@ namespace Lab2
         {
             return new Rational(r1.Denominator * num, r1.Numerator);
         }
+        #endregion
     }
 }

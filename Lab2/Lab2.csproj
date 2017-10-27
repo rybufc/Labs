@@ -41,6 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\AdditionCommand.cs" />
+    <Compile Include="Commands\DivideCommand.cs" />
+    <Compile Include="Commands\MultiplicationCommand.cs" />
+    <Compile Include="Commands\SubtractionCommand.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rational.cs" />
@@ -48,6 +52,13 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ConsoleUI\ConsoleUI.csproj">
+      <Project>{67c36b1e-7e87-4af5-a579-ef84e2ba71d5}</Project>
+      <Name>ConsoleUI</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
