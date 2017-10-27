@@ -76,9 +76,18 @@ namespace Lab2
             return string.Format("{}.{}:{}", z, numerator, Denominator
             );
         }
-        
+
+        /// <summary>
+        /// распознаёт строки форматов:
+        /// {int} - приводит к дроби с основанием 1
+        /// {int1}:{int2} - приводит дроби int1 / int2
+        /// {int1}.{int2}:{int3} - приводит к дроби (int1 * int3 + int2) / int 3;
+        /// </summary>
+        /// <param name="input">входная строка</param>
+        /// <param name="result">результат распознавания</param>
+        /// <returns>Если распознание удалось, вернёт true. Иначе - false.</returns>
         public static bool TryParse(string input, out Rational result)
-        {//Z.N:D,
+        {
             if (input == "")
             {
                 result = default(Rational);
@@ -116,9 +125,9 @@ namespace Lab2
 
         private void Even()
         {
-            int Divisor = GreatestCommonDivisor(this.Numerator, this.Denominator);
-            this.Numerator /= Divisor;
-            this.Denominator /= Divisor;
+            int Divisor = GreatestCommonDivisor(Numerator, Denominator);
+            Numerator /= Divisor;
+            Denominator /= Divisor;
         }
 
         private static int LeastCommonMultiple(int first, int second)
