@@ -58,7 +58,6 @@ namespace Lab2
 
         public override string ToString()
         {
-            Even();
             int z = Numerator / Denominator;
             int numerator = Numerator - z * Denominator;
 
