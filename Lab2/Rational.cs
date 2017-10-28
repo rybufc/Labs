@@ -151,6 +151,17 @@ namespace Lab2
         }
 
         #region Операторы
+
+        public static implicit operator int(Rational r)
+        {
+            return r.Numerator / r.Denominator;
+        }
+
+        public static implicit operator Rational(int num)
+        {
+            return new Rational(num, 1);
+        }
+
         public static Rational operator +(Rational r1, Rational r2)
         {
             int denominator = LeastCommonMultiple(r1.Denominator, r2.Denominator);
