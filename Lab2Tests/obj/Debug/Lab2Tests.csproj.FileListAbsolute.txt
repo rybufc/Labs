@@ -1,0 +1,10 @@
+C:\Users\rybufc\Desktop\projects\OOP\Labs\Lab2Tests\bin\Debug\Lab2Tests.dll
+C:\Users\rybufc\Desktop\projects\OOP\Labs\Lab2Tests\bin\Debug\Lab2Tests.pdb
+C:\Users\rybufc\Desktop\projects\OOP\Labs\Lab2Tests\bin\Debug\Lab2.exe
+C:\Users\rybufc\Desktop\projects\OOP\Labs\Lab2Tests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\rybufc\Desktop\projects\OOP\Labs\Lab2Tests\bin\Debug\ConsoleUI.dll
+C:\Users\rybufc\Desktop\projects\OOP\Labs\Lab2Tests\bin\Debug\Lab2.pdb
+C:\Users\rybufc\Desktop\projects\OOP\Labs\Lab2Tests\bin\Debug\ConsoleUI.pdb
+C:\Users\rybufc\Desktop\projects\OOP\Labs\Lab2Tests\obj\Debug\Lab2Tests.csprojResolveAssemblyReference.cache
+C:\Users\rybufc\Desktop\projects\OOP\Labs\Lab2Tests\obj\Debug\Lab2Tests.dll
+C:\Users\rybufc\Desktop\projects\OOP\Labs\Lab2Tests\obj\Debug\Lab2Tests.pdb

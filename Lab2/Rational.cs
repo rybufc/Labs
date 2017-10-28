@@ -21,9 +21,15 @@ namespace Lab2
             Numerator = numerator;
             Denominator = denominator;
             Even();
+
+            if (Denominator < 0)
+            {
+                Numerator *= -1;
+                Denominator *= -1;
+            }
         }
 
-        #region BinareOperations
+        #region Binary Operations
         public Rational Add(Rational c)
         {
             return this + c;
@@ -47,21 +53,20 @@ namespace Lab2
 
         public override string ToString()
         {
-            int z = Numerator / Denominator;
-            int numerator = Numerator - z * Denominator;
-
-            if (numerator == 0)
+            if (Base == 0)
             {
-                return $"{z}";
+                return $"{Numerator}:{Denominator}";
             }
-            if (z == 0)
+            if (Base * Denominator == Numerator)
             {
-                return $"{numerator}:{Denominator}";
+                return $"{Base}";
             }
-
-            return $"{z}.{numerator}:{Denominator}";
+            int numerator = Numerator - Base * Denominator;
+            numerator = Numerator < 0 ? -numerator : numerator;
+            
+            return $"{Base}.{numerator}:{Denominator}";
         }
-
+        
         /// <summary>
         /// распознаёт строки форматов:
         /// {int} - приводит к дроби с основанием 1
@@ -92,6 +97,7 @@ namespace Lab2
                 int z = int.Parse(tokens[0]);
                 int numerator = int.Parse(tokens[1].Split(':')[0]);
                 int denominator = int.Parse(tokens[1].Split(':')[1]);
+                numerator = z < 0 && numerator > 0 ? -numerator : numerator;
                 result = new Rational(numerator + z * denominator, denominator);
             }
             else if (tokens[0].Split(':').Length == 2)
@@ -111,22 +117,22 @@ namespace Lab2
         #region Helpers
         private void Even()
         {
-            int Divisor = GreatestCommonDivisor(Numerator, Denominator);
-            Numerator /= Divisor;
-            Denominator /= Divisor;
+            int divisor = GreatestCommonDivisor(Numerator, Denominator);
+            Numerator /= divisor;
+            Denominator /= divisor;
         }
 
         private static int LeastCommonMultiple(int first, int second)
         {
-            int Multiple = first * second;
+            int multiple = first * second;
             for (int i = 0; i < (first * second + 1); i++)
             {
                 if (i % first == 0 && i % second == 0)
                 {
-                    Multiple = i;
+                    multiple = i;
                 }
             }
-            return Multiple;
+            return multiple;
         }
 
         private static int GreatestCommonDivisor(int first, int second)
@@ -145,7 +151,7 @@ namespace Lab2
 
         public static implicit operator int(Rational r)
         {
-            return r.Numerator / r.Denominator;
+            return r.Base;
         }
 
         public static implicit operator Rational(int num)
@@ -158,7 +164,6 @@ namespace Lab2
             int denominator = LeastCommonMultiple(r1.Denominator, r2.Denominator);
             int numerator = r1.Numerator * denominator / r1.Denominator + r2.Numerator * denominator / r2.Denominator;
             Rational result = new Rational(numerator, denominator);
-            result.Even();
             return result;
         }
 

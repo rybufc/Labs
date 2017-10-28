@@ -42,6 +42,12 @@ namespace Lab2
                 return;
             }
 
+            if (r2.ToString() == "0")
+            {
+                Console.WriteLine("Делитель не может быть равен нулю!");
+                return;
+            }
+
             Console.WriteLine((r1 / r2).ToString());
         }
     }
