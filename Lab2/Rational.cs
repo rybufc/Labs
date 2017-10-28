@@ -7,21 +7,9 @@ namespace Lab2
     {
         public int Numerator { get; private set; }
         public int Denominator { get; private set; }
-        public int Base
-        {
-            get
-            {
-                return Numerator / Denominator;
-            }
-        }
 
-        public int Fraction
-        {
-            get
-            {
-                return Numerator % Denominator;
-            }
-        }
+        public int Base => Numerator / Denominator;
+        public int Fraction => Numerator % Denominator;
 
         public Rational(int numerator, int denominator)
         {
@@ -35,7 +23,7 @@ namespace Lab2
             Even();
         }
 
-        
+        #region BinareOperations
         public Rational Add(Rational c)
         {
             return this + c;
@@ -55,6 +43,7 @@ namespace Lab2
         {
             return this / r;
         }
+        #endregion
 
         public override string ToString()
         {
@@ -119,6 +108,7 @@ namespace Lab2
             return true;
         }
 
+        #region Helpers
         private void Even()
         {
             int Divisor = GreatestCommonDivisor(Numerator, Denominator);
@@ -149,6 +139,7 @@ namespace Lab2
             }
             return first;
         }
+        #endregion
 
         #region Операторы
 
