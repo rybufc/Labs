@@ -44,6 +44,7 @@ namespace Lab2
         private bool ParseInput(string input, out Rational r)
         {
             bool success = false;
+            r = default(Rational);
             string message = "";
             try
             {
@@ -62,8 +63,6 @@ namespace Lab2
                                       "Подробнее о формате ввода рациональных чисел вы можете\n прочитать в команде 'rational'");
                 Console.WriteLine();
             }
-
-            r = default(Rational);
             return success;
         }
     }
