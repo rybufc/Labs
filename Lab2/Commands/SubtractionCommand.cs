@@ -36,9 +36,18 @@ namespace Lab2
                 Console.WriteLine(e.Message);
                 return;
             }
-            if (!(r1Success && r2Success))
+
+            bool success = r1Success && r2Success;
+            if (!r1Success)
             {
-                Console.WriteLine("Были введены не рациональные/целые числа");
+                Console.WriteLine("'" + args[0] + "' - не является рациональным числом.");
+            }
+            if (!r2Success)
+            {
+                Console.WriteLine("'" + args[1] + "' - не является рациональным числом.");
+            }
+            if (!success)
+            {
                 return;
             }
 
