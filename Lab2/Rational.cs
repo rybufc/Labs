@@ -53,6 +53,10 @@ namespace Lab2
 
         public override string ToString()
         {
+            if (Numerator == 0)
+            {
+                return "0";
+            }
             if (Base == 0)
             {
                 return $"{Numerator}:{Denominator}";
