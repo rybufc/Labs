@@ -23,35 +23,40 @@ namespace Lab2
 
             Rational r1 = default(Rational);
             Rational r2 = default(Rational);
-            bool r1Success;
-            bool r2Success;
-
-            try
-            {
-                r1Success = Rational.TryParse(args[0], out r1);
-                r2Success = Rational.TryParse(args[1], out r2);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-                return;
-            }
-
+            bool r1Success = ParseInput(args[0], out r1);
+            bool r2Success = ParseInput(args[1], out r2);
             bool success = r1Success && r2Success;
-            if (!r1Success)
-            {
-                Console.WriteLine("'" + args[0] + "' - не является рациональным числом.");
-            }
-            if (!r2Success)
-            {
-                Console.WriteLine("'" + args[1] + "' - не является рациональным числом.");
-            }
             if (!success)
             {
                 return;
             }
 
             Console.WriteLine((r1 - r2).ToString());
+        }
+
+        private bool ParseInput(string input, out Rational r)
+        {
+            bool success = false;
+            string message = "";
+            try
+            {
+                success = Rational.TryParse(input, out r);
+            }
+            catch (Exception e)
+            {
+                message = e.Message;
+            }
+            if (!success)
+            {
+                if (message != "")
+                    Console.WriteLine(message);
+                else
+                    Console.WriteLine("'" + input + "' - не является рациональным числом.");
+                Console.WriteLine();
+            }
+
+            r = default(Rational);
+            return success;
         }
     }
 }
