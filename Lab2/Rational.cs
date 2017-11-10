@@ -84,7 +84,7 @@ namespace Lab2
                 return false;
             }
 
-            Regex regexp = new Regex("^((-?\\d+)([.])?)?((-?\\d+)[:](-?\\d+))?$");
+            Regex regexp = new Regex("^(([+-]?\\d+)([.])?)?(([+-]\\d+)[:]([+-]?\\d+))?$");
             if (!regexp.IsMatch(input))
             {
                 result = default(Rational);
@@ -149,7 +149,7 @@ namespace Lab2
 
         #region Операторы
 
-        public static implicit operator int(Rational r)
+        public static explicit operator int(Rational r)
         {
             return r.Base;
         }
