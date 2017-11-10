@@ -1,4 +1,5 @@
 ﻿using ConsoleUI;
+using Lab2.Commands;
 
 namespace Lab2
 {
@@ -12,6 +13,7 @@ namespace Lab2
             app.AddCommand(new DivideCommand());
             app.AddCommand(new MultiplicatinCommand());
             app.AddCommand(new SubtractionCommand());
+            app.AddCommand(new RationalFormatInfoCommand());
             app.AddCommand(new HelpCommand(app));
             app.AddCommand(new ExitCommand(app));
 

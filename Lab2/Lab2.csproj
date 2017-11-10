@@ -44,6 +44,7 @@
     <Compile Include="Commands\AdditionCommand.cs" />
     <Compile Include="Commands\DivideCommand.cs" />
     <Compile Include="Commands\MultiplicationCommand.cs" />
+    <Compile Include="Commands\RationalFormatInfoCommand.cs" />
     <Compile Include="Commands\SubtractionCommand.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

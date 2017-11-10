@@ -51,7 +51,8 @@ namespace Lab2
                 if (message != "")
                     Console.WriteLine(message);
                 else
-                    Console.WriteLine("'" + input + "' - не является рациональным числом.");
+                    Console.WriteLine("'" + input + "' - не является рациональным числом.\n" +
+                                      "Подробнее о формате ввода рациональных чисел вы можете\n прочитать в команде 'rational'");
                 Console.WriteLine();
             }
 
