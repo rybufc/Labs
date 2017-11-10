@@ -84,34 +84,73 @@ namespace Lab2
                 return false;
             }
 
-            Regex regexp = new Regex("^(([+-]?\\d+)([.])?)?(([+-]\\d+)[:]([+-]?\\d+))?$");
+            Regex regexp = new Regex("^(([+-]?\\d+)([.])?)?(([+-]?\\d+)[:]([+-]?\\d+))?$");
             if (!regexp.IsMatch(input))
             {
                 result = default(Rational);
                 return false;
             }
 
-            string[] tokens = input.Split('.');
-            if (tokens.Length == 2)
+            if (input.IndexOf(':') != -1)
             {
-                int z = int.Parse(tokens[0]);
-                int numerator = int.Parse(tokens[1].Split(':')[0]);
-                int denominator = int.Parse(tokens[1].Split(':')[1]);
-                numerator = z < 0 && numerator > 0 ? -numerator : numerator;
+                int denominator = 0;
+                try
+                {
+                    denominator = int.Parse(input.Split(':')[1]);
+                }
+                catch (Exception e)
+                {
+                    ThrowError("Произошла ошибка при попытке распознать знаменатель в числе: '" + input
+                        + "'\n'" + e.Message + "'");
+                }
+
+                int numerator = 0;
+                try
+                {
+                    numerator = input.IndexOf('.') != -1
+                        ? int.Parse(input.Split(':')[0].Split('.')[1])
+                        : int.Parse(input.Split(':')[0]);
+                }
+                catch (Exception e)
+                {
+                    ThrowError("Произошла ошибка при попытке распознать числитель в числе: '" + input
+                               + "'\n'" + e.Message + "'");
+                }
+
+                int z = 0;
+                try
+                {
+                    z = input.IndexOf('.') != -1 ? int.Parse(input.Split('.')[0]) : 0;
+                }
+                catch (Exception e)
+                {
+                    ThrowError("Произошла ошибка при попытке распознать целую часть числа: '" + input
+                               + "'\n'" + e.Message + "'");
+                }
+                
                 result = new Rational(numerator + z * denominator, denominator);
-            }
-            else if (tokens[0].Split(':').Length == 2)
-            {
-                int numerator = int.Parse(tokens[0].Split(':')[0]);
-                int denominator = int.Parse(tokens[0].Split(':')[1]);
-                result = new Rational(numerator, denominator);
             }
             else
             {
-                result = new Rational(int.Parse(tokens[0]), 1);
+                int z = 0;
+                try
+                {
+                    z = int.Parse(input);
+                }
+                catch (Exception e)
+                {
+                    ThrowError("Произошла ошибка при попытке распознать число: '" + input
+                               + "'\n'" + e.Message + "'");
+                }
+                result = z;
             }
 
             return true;
+        }
+
+        private static void ThrowError(string message)
+        {
+            throw new Exception(message);
         }
 
         #region Helpers
