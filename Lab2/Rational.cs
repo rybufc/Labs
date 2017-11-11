@@ -83,7 +83,7 @@ namespace Lab2
             result = default(Rational);
             try
             {
-                Parse(input, out result);
+                result = Parse(input);
             }
             catch (Exception)
             {
@@ -92,11 +92,10 @@ namespace Lab2
             return true;
         }
 
-        private static void Parse(string input, out Rational result)
+        private static Rational Parse(string input)
         {
             if (input == "")
             {
-                result = default(Rational);
                 throw new Exception("Была передана пустая строка");
             }
 
@@ -104,7 +103,6 @@ namespace Lab2
             Match match = regexp.Match(input);
             if (!match.Success)
             {
-                result = default(Rational);
                 throw new Exception($"`{input}` - не является рациональным числом.");
             }
             var tokens = match.Groups;
@@ -147,7 +145,7 @@ namespace Lab2
                            + "'\n'" + e.Message + "'");
             }
             
-            result = new Rational(numerator + z * denominator, denominator);
+            return new Rational(numerator + z * denominator, denominator);
         }
 
         #region Helpers

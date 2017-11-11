@@ -36,25 +36,12 @@ namespace Lab2
 
         private bool ParseInput(string input, out Rational r)
         {
-            bool success = false;
-            r = default(Rational);
-            string message = "";
-            try
-            {
-                success = Rational.TryParse(input, out r);
-            }
-            catch (Exception e)
-            {
-                message = e.Message;
-            }
+            bool success = Rational.TryParse(input, out r); ;
             if (!success)
             {
-                if (message != "")
-                    Console.WriteLine(message);
-                else
-                    Console.WriteLine("'" + input + "' - не является рациональным числом.\n" +
-                                      "Подробнее о формате ввода рациональных чисел вы можете\n прочитать в команде 'rational'");
-                Console.WriteLine();
+                Console.WriteLine("'" + input + "' - не является рациональным числом.\n" +
+                                    "Подробнее о формате ввода рациональных чисел вы можете\n " +
+                                  "прочитать в команде 'rational'\n");
             }
             return success;
         }
