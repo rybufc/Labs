@@ -80,10 +80,23 @@ namespace Lab2
         /// <returns>Если распознание удалось, вернёт true. Иначе - false.</returns>
         public static bool TryParse(string input, out Rational result)
         {
+            result = default(Rational);
+            try
+            {
+                Parse(input, out result);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        private static void Parse(string input, out Rational result)
+        {
             if (input == "")
             {
                 result = default(Rational);
-                return false;
             }
 
             Regex regexp = new Regex("^(([+-]?\\d+)[.]?)?(([+-]?\\d+)[:]([+-]?\\d+))?$");
@@ -91,7 +104,6 @@ namespace Lab2
             if (!match.Success)
             {
                 result = default(Rational);
-                return false;
             }
             var tokens = match.Groups;
 
@@ -107,7 +119,7 @@ namespace Lab2
             catch (Exception e)
             {
                 ThrowError("Произошла ошибка при попытке распознать знаменатель в числе: '" + input
-                    + "'\n'" + e.Message + "'");
+                           + "'\n'" + e.Message + "'");
             }
 
             try
@@ -120,7 +132,7 @@ namespace Lab2
                 ThrowError("Произошла ошибка при попытке распознать числитель в числе: '" + input
                            + "'\n'" + e.Message + "'");
             }
-            
+
             try
             {
                 if (tokens[2].Value != "")
@@ -129,11 +141,9 @@ namespace Lab2
             catch (Exception e)
             {
                 ThrowError("Произошла ошибка при попытке распознать целую часть в числе: '" + input
-                            + "'\n'" + e.Message + "'");
+                           + "'\n'" + e.Message + "'");
             }
             result = new Rational(numerator + z * denominator, denominator);
-
-            return true;
         }
 
         private static void ThrowError(string message)
