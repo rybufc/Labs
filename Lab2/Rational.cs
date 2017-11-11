@@ -97,6 +97,7 @@ namespace Lab2
             if (input == "")
             {
                 result = default(Rational);
+                throw new Exception("Была передана пустая строка");
             }
 
             Regex regexp = new Regex("^(([+-]?\\d+)[.]?)?(([+-]?\\d+)[:]([+-]?\\d+))?$");
@@ -104,12 +105,36 @@ namespace Lab2
             if (!match.Success)
             {
                 result = default(Rational);
+                throw new Exception($"`{input}` - не является рациональным числом.");
             }
             var tokens = match.Groups;
 
             int denominator = 1;
             int numerator = 0;
             int z = 0;
+
+            try
+            {
+                if (tokens[2].Value != "")
+                    z = int.Parse(tokens[2].Value);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Произошла ошибка при попытке распознать целую часть в числе: '" + input
+                                    + "'\n'" + e.Message + "'");
+            }
+
+            try
+            {
+                if (tokens[4].Value != "")
+                    numerator = int.Parse(tokens[4].Value);
+                if (z < 0) numerator *= -1;
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Произошла ошибка при попытке распознать числитель в числе: '" + input
+                                    + "'\n'" + e.Message + "'");
+            }
 
             try
             {
@@ -121,28 +146,7 @@ namespace Lab2
                 throw new Exception("Произошла ошибка при попытке распознать знаменатель в числе: '" + input
                            + "'\n'" + e.Message + "'");
             }
-
-            try
-            {
-                if (tokens[4].Value != "")
-                    numerator = int.Parse(tokens[4].Value);
-            }
-            catch (Exception e)
-            {
-                throw new Exception("Произошла ошибка при попытке распознать числитель в числе: '" + input
-                           + "'\n'" + e.Message + "'");
-            }
-
-            try
-            {
-                if (tokens[2].Value != "")
-                    z = int.Parse(tokens[2].Value);
-            }
-            catch (Exception e)
-            {
-                throw new Exception("Произошла ошибка при попытке распознать целую часть в числе: '" + input
-                           + "'\n'" + e.Message + "'");
-            }
+            
             result = new Rational(numerator + z * denominator, denominator);
         }
 
