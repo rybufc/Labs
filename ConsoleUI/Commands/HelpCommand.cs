@@ -10,7 +10,7 @@ namespace ConsoleUI
 
         public string[] Synonyms => new[] { "?" };
 
-        public string Description => "Выводит список с их кратким описание. " +
+        public string Description => "Выводит список с их кратким описанием. " +
                                      "Для того, чтобы узнать более подробное описание команды, введите 'help [command]', " +
                                      "где [command] - нужная вам команда";
 
@@ -66,7 +66,7 @@ namespace ConsoleUI
             }
         }
 
-        private const string line = "======================================================";
+        private const string line = "===============================================================";
 
     }
 }

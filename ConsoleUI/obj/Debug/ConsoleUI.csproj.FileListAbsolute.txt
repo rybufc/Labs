@@ -4,3 +4,10 @@ C:\Users\rybufc\Desktop\projects\OOP\Labs\ConsoleUI\bin\Debug\ConsoleUI.pdb
 C:\Users\rybufc\Desktop\projects\OOP\Labs\ConsoleUI\obj\Debug\ConsoleUI.csprojResolveAssemblyReference.cache
 C:\Users\rybufc\Desktop\projects\OOP\Labs\ConsoleUI\obj\Debug\ConsoleUI.dll
 C:\Users\rybufc\Desktop\projects\OOP\Labs\ConsoleUI\obj\Debug\ConsoleUI.pdb
+D:\projects\OOP\Labs\ConsoleUI\bin\Debug\ConsoleUI.dll.config
+D:\projects\OOP\Labs\ConsoleUI\bin\Debug\ConsoleUI.dll
+D:\projects\OOP\Labs\ConsoleUI\bin\Debug\ConsoleUI.pdb
+D:\projects\OOP\Labs\ConsoleUI\obj\Debug\ConsoleUI.csprojResolveAssemblyReference.cache
+D:\projects\OOP\Labs\ConsoleUI\obj\Debug\ConsoleUI.csproj.CoreCompileInputs.cache
+D:\projects\OOP\Labs\ConsoleUI\obj\Debug\ConsoleUI.dll
+D:\projects\OOP\Labs\ConsoleUI\obj\Debug\ConsoleUI.pdb
