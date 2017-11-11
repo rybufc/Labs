@@ -1,4 +1,5 @@
-﻿using ConsoleUI;
+﻿using System.Security.Cryptography.X509Certificates;
+using ConsoleUI;
 using Lab2.Commands;
 
 namespace Lab2
@@ -18,6 +19,11 @@ namespace Lab2
             app.AddCommand(new ExitCommand(app));
 
             app.Run(args);
+            Rational r = new Rational(1,5);
+            int n = 10;
+
+            n = (int) r;
+            r = n;
         }
     }
 }
