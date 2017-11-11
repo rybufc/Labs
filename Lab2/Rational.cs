@@ -118,7 +118,7 @@ namespace Lab2
             }
             catch (Exception e)
             {
-                ThrowError("Произошла ошибка при попытке распознать знаменатель в числе: '" + input
+                throw new Exception("Произошла ошибка при попытке распознать знаменатель в числе: '" + input
                            + "'\n'" + e.Message + "'");
             }
 
@@ -129,7 +129,7 @@ namespace Lab2
             }
             catch (Exception e)
             {
-                ThrowError("Произошла ошибка при попытке распознать числитель в числе: '" + input
+                throw new Exception("Произошла ошибка при попытке распознать числитель в числе: '" + input
                            + "'\n'" + e.Message + "'");
             }
 
@@ -140,15 +140,10 @@ namespace Lab2
             }
             catch (Exception e)
             {
-                ThrowError("Произошла ошибка при попытке распознать целую часть в числе: '" + input
+                throw new Exception("Произошла ошибка при попытке распознать целую часть в числе: '" + input
                            + "'\n'" + e.Message + "'");
             }
             result = new Rational(numerator + z * denominator, denominator);
-        }
-
-        private static void ThrowError(string message)
-        {
-            throw new Exception(message);
         }
 
         #region Helpers
