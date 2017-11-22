@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using ConsoleUI;
 using DrawablesUI;
 
@@ -20,6 +20,9 @@ namespace GraphicsEditor
             app.AddCommand(new DrawEllipseCommand(app, picture));
             app.AddCommand(new DrawCircleCommand(app, picture));
             app.AddCommand(new RemoveCommand(app, picture));
+            app.AddCommand(new ListCommand(app, picture));
+            app.AddCommand(new ChangeColorCommand(app, picture));
+            app.AddCommand(new ChangeWidthCommand(app, picture));
 
             picture.Changed += ui.Refresh;
             ui.Start();
