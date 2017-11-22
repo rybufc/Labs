@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ConsoleUI;
+using DrawablesUI;
 
 namespace GraphicsEditor
 {
@@ -30,6 +31,7 @@ namespace GraphicsEditor
                 return;
             }
 
+            picture.Information();
         }
     }
 }
