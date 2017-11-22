@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +8,7 @@ using System.Drawing;
 
 namespace GraphicsEditor
 {
-    class Line : IDrawable
+    class Line : IShape
     {
         public PointF Begin
         {
@@ -22,15 +22,27 @@ namespace GraphicsEditor
             private set;
         }
 
+        public FormatInfo Format { get; set; } = new FormatInfo();
+
         public Line(PointF begin, PointF end)
         {
             Begin = begin;
             End = end;
+            Format.Color = Color.Black;
+            Format.Width = 1;
         }
 
-        public void Draw(IDrawer Drawer)
+        public void Draw(IDrawer drawer)
         {
-            Drawer.DrawLine(Begin, End);
+            drawer.SelectPen(Format.Color, (int)Format.Width);
+            drawer.DrawLine(Begin, End);
+        }
+
+        public override string ToString()
+        {
+            string result = string.Format("Линия(Начало({0}, {1}), Конец({2}, {3}))",
+                Begin.X, Begin.Y, End.X, End.Y);
+            return result;
         }
     }
 }
