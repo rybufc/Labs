@@ -1,0 +1,6 @@
+C:\Users\Tolya\source\repos\GraphicsEditor\DrawablesUI\bin\Debug\DrawablesUI.dll
+C:\Users\Tolya\source\repos\GraphicsEditor\DrawablesUI\bin\Debug\DrawablesUI.pdb
+C:\Users\Tolya\source\repos\GraphicsEditor\DrawablesUI\obj\Debug\DrawablesUI.csprojResolveAssemblyReference.cache
+C:\Users\Tolya\source\repos\GraphicsEditor\DrawablesUI\obj\Debug\DrawablesUI.csproj.CoreCompileInputs.cache
+C:\Users\Tolya\source\repos\GraphicsEditor\DrawablesUI\obj\Debug\DrawablesUI.dll
+C:\Users\Tolya\source\repos\GraphicsEditor\DrawablesUI\obj\Debug\DrawablesUI.pdb

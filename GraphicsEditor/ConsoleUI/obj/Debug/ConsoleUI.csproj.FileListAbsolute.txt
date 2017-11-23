@@ -1,0 +1,7 @@
+C:\Users\Tolya\source\repos\GraphicsEditor\ConsoleUI\bin\Debug\ConsoleUI.dll.config
+C:\Users\Tolya\source\repos\GraphicsEditor\ConsoleUI\bin\Debug\ConsoleUI.dll
+C:\Users\Tolya\source\repos\GraphicsEditor\ConsoleUI\bin\Debug\ConsoleUI.pdb
+C:\Users\Tolya\source\repos\GraphicsEditor\ConsoleUI\obj\Debug\ConsoleUI.csprojResolveAssemblyReference.cache
+C:\Users\Tolya\source\repos\GraphicsEditor\ConsoleUI\obj\Debug\ConsoleUI.csproj.CoreCompileInputs.cache
+C:\Users\Tolya\source\repos\GraphicsEditor\ConsoleUI\obj\Debug\ConsoleUI.dll
+C:\Users\Tolya\source\repos\GraphicsEditor\ConsoleUI\obj\Debug\ConsoleUI.pdb
