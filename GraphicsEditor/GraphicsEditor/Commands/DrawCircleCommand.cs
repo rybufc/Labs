@@ -27,7 +27,6 @@ namespace GraphicsEditor
             }
 
             if (CheckArgs(args, out var parameters)) return;
-            ;
 
             PointF centre = new PointF(parameters[0], parameters[1]);
             Circle circle = new Circle(centre, parameters[2]);
