@@ -51,6 +51,7 @@ namespace GraphicsEditor
                 if (index < 0 || index >= picture.ShapesCount)
                 {
                     Console.WriteLine($"Фигуры с индексом '{index}' не существует!");
+                    return;
                 }
                 var shape = picture.GetShape(index);
                 shape.Format.Width = width;
