@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ConsoleUI;
 
 namespace GraphicsEditor
@@ -27,7 +23,7 @@ namespace GraphicsEditor
                 Console.WriteLine("Введите номера фигур, которые нужно удалить");
                 return;
             }
-            int[] args = Array.ConvertAll(parameters, new Converter<string, Int32>(Int32.Parse));
+            int[] args = Array.ConvertAll(parameters, Int32.Parse);
             Array.Sort(args);
             Array.Reverse(args);
             foreach(var index in args)

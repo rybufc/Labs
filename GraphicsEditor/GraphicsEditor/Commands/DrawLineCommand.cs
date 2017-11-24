@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ConsoleUI;
 using System.Drawing;
 
@@ -21,17 +18,61 @@ namespace GraphicsEditor
             this.picture = picture;
         }
 
-        public void Execute(params string[] parameters)
+        public void Execute(params string[] args)
         {
-            if (parameters.Length != 4)
+            if (args.Length != 4)
             {
                 Console.WriteLine("Введено некорректное количество аргументов");
                 return;
             }
-            PointF begin = new PointF(Single.Parse(parameters[0]), Single.Parse(parameters[1]));
-            PointF end = new PointF(Single.Parse(parameters[2]), Single.Parse(parameters[3]));
+
+            if (CheckArgs(args, out var parameters)) return;
+
+            PointF begin = new PointF(parameters[0], parameters[1]);
+            PointF end = new PointF(parameters[2], parameters[3]);
             Line line = new Line(begin, end);
             picture.Add(line);
+        }
+
+        private static bool CheckArgs(string[] args, out float[] parameters)
+        {
+            parameters = new float[4];
+            bool parseSuccess = true;
+            List<string> exceptions = new List<string>();
+            for (int i = 0; i < args.Length; i++)
+            {
+                var parameter = args[i];
+                float tmp;
+                bool parseResult = Single.TryParse(args[i], out tmp);
+                if (!parseResult)
+                {
+                    exceptions.Add($"Параметр '{parameter}' - не является числом типа float");
+                    parseSuccess = false;
+                    continue;
+                }
+                if (tmp > 1000000000)
+                {
+                    exceptions.Add($"Параметр '{parameter}' - слишком большой.");
+                    parseSuccess = false;
+                    continue;
+                }
+                if (tmp < -1000000000)
+                {
+                    exceptions.Add($"Параметр '{parameter}' - слишком маленький.");
+                    parseSuccess = false;
+                    continue;
+                }
+                parameters[i] = tmp;
+            }
+            if (!parseSuccess)
+            {
+                foreach (var exceptionMessage in exceptions)
+                {
+                    Console.WriteLine(exceptionMessage);
+                }
+                return true;
+            }
+            return false;
         }
     }
 }

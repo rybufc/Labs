@@ -1,4 +1,3 @@
-using System;
 using ConsoleUI;
 using DrawablesUI;
 
