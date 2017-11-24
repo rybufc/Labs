@@ -30,9 +30,9 @@ namespace GraphicsEditor
             {
                 color = ColorTranslator.FromHtml(args[0]);
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                Console.WriteLine($"Произошла ошибка при попытке распарсить цвет: {e.Message}");
+                Console.WriteLine($"Произошла ошибка при попытке распарсить цвет");
                 return;
             }
 
@@ -47,6 +47,10 @@ namespace GraphicsEditor
                 {
                     Console.WriteLine($"Произошла ошибка при попытке распарсить индекс '{args[i]}': {e.Message}");
                     return;
+                }
+                if (index < 0 || index >= picture.ShapesCount)
+                {
+                    Console.WriteLine($"Фигуры с индексом '{index}' не существует!");
                 }
                 var shape = picture.GetShape(index);
                 shape.Format.Color = color;

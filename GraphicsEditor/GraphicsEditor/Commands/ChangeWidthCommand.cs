@@ -48,6 +48,10 @@ namespace GraphicsEditor
                     Console.WriteLine($"Произошла ошибка при попытке распарсить индекс '{args[i]}': {e.Message}");
                     return;
                 }
+                if (index < 0 || index >= picture.ShapesCount)
+                {
+                    Console.WriteLine($"Фигуры с индексом '{index}' не существует!");
+                }
                 var shape = picture.GetShape(index);
                 shape.Format.Width = width;
                 picture.RemoveAt(index);
