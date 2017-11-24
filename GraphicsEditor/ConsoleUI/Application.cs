@@ -6,10 +6,12 @@ namespace ConsoleUI
 {
     public class Application
     {
-        NotFoundCommand notFound = new NotFoundCommand();
-        bool keepRunning = true;
-        List<ICommand> commands = new List<ICommand>();
-        Dictionary<string, ICommand> commandMap = new Dictionary<string, ICommand>();
+        readonly NotFoundCommand notFound = new NotFoundCommand();
+        private bool keepRunning = true;
+        readonly List<ICommand> commands = new List<ICommand>();
+        readonly Dictionary<string, ICommand> commandMap = new Dictionary<string, ICommand>();
+        private Queue<string> commandsQueue = new Queue<string>();
+
 
         public void Exit()
         {
@@ -32,7 +34,7 @@ namespace ConsoleUI
             commands.Add(cmd);
             if (commandMap.ContainsKey(cmd.Name))
             {
-                throw new Exception(String.Format("Команда {0} уже добавлена", cmd.Name));
+                throw new Exception(string.Format("Команда {0} уже добавлена", cmd.Name));
             }
             commandMap.Add(cmd.Name, cmd);
             foreach (var s in cmd.Synonyms)
@@ -45,30 +47,65 @@ namespace ConsoleUI
                 commandMap.Add(s, cmd);
             }
         }
-        public void Run(TextReader reader)
+        public void Run(string[] args)
         {
-            string[] cmdline, parameters;
+            if (args.Length > 0)
+            {
+                string directory = AppDomain.CurrentDomain.BaseDirectory;
+
+                try
+                {
+                    FileStream file = new FileStream(directory + args[0], FileMode.Open, FileAccess.Read);
+                    StreamReader reader = new StreamReader(file);
+                    while (!reader.EndOfStream)
+                    {
+                        commandsQueue.Enqueue(reader.ReadLine());
+                    }
+                    reader.Close();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+            }
+
             while (keepRunning)
             {
-                Console.Write("> ");
-                var cmd = reader.ReadLine();
-                if (cmd == null) 
+                if (commandsQueue.Count == 0)
                 {
-                    break;
+                    Console.Write("Its your command: ");
+                    commandsQueue.Enqueue(Console.ReadLine());
                 }
-                cmdline = cmd.Split(
-                    new char[] { ' ', '\t' },
-                    StringSplitOptions.RemoveEmptyEntries
-                );
-                if (cmdline.Length == 0)
+                while (commandsQueue.Count > 0)
                 {
-                    continue;
+                    getCommand(commandsQueue.Dequeue());
                 }
-
-                parameters = new string[cmdline.Length - 1];
-                Array.Copy(cmdline, 1, parameters, 0, cmdline.Length - 1);
-                FindCommand(cmdline[0]).Execute(parameters);
             }
+        }
+
+        public void getCommand(string args)
+        {
+            if (args == null)
+            {
+                Console.WriteLine("Данной команды нет в списке доступных команд." +
+                    " Просьба за доступными командами обратиться в хелп по командам с помощью команды help.");
+                return;
+            }
+
+            string[] tokens = args.Split(
+                new[] { ' ', '\t' },
+                        StringSplitOptions.RemoveEmptyEntries
+                );
+
+            if (tokens.Length == 0)
+            {
+                return;
+            }
+
+            string[] parameters = new string[tokens.Length - 1];
+            Array.Copy(tokens, 1, parameters, 0, tokens.Length - 1);
+            ICommand cmd = FindCommand(tokens[0]);
+            cmd.Execute(parameters);
         }
     }
 }

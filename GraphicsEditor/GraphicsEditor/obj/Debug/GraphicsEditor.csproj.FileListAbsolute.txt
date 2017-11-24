@@ -10,3 +10,15 @@ C:\Users\Tolya\source\repos\GraphicsEditor\GraphicsEditor\obj\Debug\GraphicsEdit
 C:\Users\Tolya\source\repos\GraphicsEditor\GraphicsEditor\obj\Debug\GraphicsEditor.csproj.CoreCompileInputs.cache
 C:\Users\Tolya\source\repos\GraphicsEditor\GraphicsEditor\obj\Debug\GraphicsEditor.exe
 C:\Users\Tolya\source\repos\GraphicsEditor\GraphicsEditor\obj\Debug\GraphicsEditor.pdb
+D:\projects\OOP\Labs\GraphicsEditor\GraphicsEditor\bin\Debug\GraphicsEditor.exe.config
+D:\projects\OOP\Labs\GraphicsEditor\GraphicsEditor\bin\Debug\GraphicsEditor.exe
+D:\projects\OOP\Labs\GraphicsEditor\GraphicsEditor\bin\Debug\GraphicsEditor.pdb
+D:\projects\OOP\Labs\GraphicsEditor\GraphicsEditor\bin\Debug\ConsoleUI.dll
+D:\projects\OOP\Labs\GraphicsEditor\GraphicsEditor\bin\Debug\DrawablesUI.dll
+D:\projects\OOP\Labs\GraphicsEditor\GraphicsEditor\bin\Debug\ConsoleUI.pdb
+D:\projects\OOP\Labs\GraphicsEditor\GraphicsEditor\bin\Debug\ConsoleUI.dll.config
+D:\projects\OOP\Labs\GraphicsEditor\GraphicsEditor\bin\Debug\DrawablesUI.pdb
+D:\projects\OOP\Labs\GraphicsEditor\GraphicsEditor\obj\Debug\GraphicsEditor.csprojResolveAssemblyReference.cache
+D:\projects\OOP\Labs\GraphicsEditor\GraphicsEditor\obj\Debug\GraphicsEditor.csproj.CoreCompileInputs.cache
+D:\projects\OOP\Labs\GraphicsEditor\GraphicsEditor\obj\Debug\GraphicsEditor.exe
+D:\projects\OOP\Labs\GraphicsEditor\GraphicsEditor\obj\Debug\GraphicsEditor.pdb

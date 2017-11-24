@@ -8,6 +8,7 @@ namespace GraphicsEditor
     {
         private readonly List<IShape> shapes = new List<IShape>();
         private readonly object lockObject = new object();
+        public int ShapesCount => shapes.Count;
 
         public event Action Changed;
 

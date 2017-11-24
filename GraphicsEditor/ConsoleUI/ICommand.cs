@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ConsoleUI
+﻿namespace ConsoleUI
 {
     /// <summary>
     /// Команда которую пользователь может выполнить,
@@ -16,6 +10,6 @@ namespace ConsoleUI
         string Help { get; }
         string Description { get; }
         string[] Synonyms { get; }
-        void Execute(params string[] parameters);
+        void Execute(params string[] args);
     }
 }

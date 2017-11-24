@@ -43,19 +43,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Circle.cs" />
-    <Compile Include="DrawCircleCommand.cs" />
-    <Compile Include="DrawEllipseCommand.cs" />
-    <Compile Include="DrawLineCommand.cs" />
-    <Compile Include="DrawPointCommand.cs" />
-    <Compile Include="Ellipse.cs" />
-    <Compile Include="Line.cs" />
-    <Compile Include="ListCommand.cs" />
+    <Compile Include="Commands\ChangeColorCommand.cs" />
+    <Compile Include="Commands\ChangeWidthCommand.cs" />
+    <Compile Include="GraphicPrimitives\Circle.cs" />
+    <Compile Include="Commands\DrawCircleCommand.cs" />
+    <Compile Include="Commands\DrawEllipseCommand.cs" />
+    <Compile Include="Commands\DrawLineCommand.cs" />
+    <Compile Include="Commands\DrawPointCommand.cs" />
+    <Compile Include="GraphicPrimitives\Ellipse.cs" />
+    <Compile Include="GraphicPrimitives\Line.cs" />
+    <Compile Include="Commands\ListCommand.cs" />
     <Compile Include="Picture.cs" />
-    <Compile Include="Point.cs" />
+    <Compile Include="GraphicPrimitives\Point.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RemoveCommand.cs" />
+    <Compile Include="Commands\RemoveCommand.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
