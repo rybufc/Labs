@@ -16,17 +16,38 @@ namespace GraphicsEditor
             this.picture = picture;
         }
 
-        public void Execute(params string[] parameters)
+        public void Execute(params string[] args)
         {
-            if (parameters.Length < 2)
+            if (args.Length < 2)
             {
                 Console.WriteLine("Не была введена ширина, или индексы фигур");
                 return;
             }
-            uint width = (uint)Int32.Parse(parameters[0]);
-            for (int i = 1; i < parameters.Length; i++)
+
+            uint width;
+            try
             {
-                int index = Int32.Parse(parameters[i]);
+                width = (uint)Int32.Parse(args[0]);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Произошла ошибка при попытке распарсить ширину `{0}` : {1}", 
+                    args[0], e.Message);
+                return;
+            }
+            
+            for (int i = 1; i < args.Length; i++)
+            {
+                int index = 0;
+                try
+                {
+                    index = Int32.Parse(args[i]);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine($"Произошла ошибка при попытке распарсить индекс '{args[i]}': {e.Message}");
+                    return;
+                }
                 var shape = picture.GetShape(index);
                 shape.Format.Width = width;
                 picture.RemoveAt(index);

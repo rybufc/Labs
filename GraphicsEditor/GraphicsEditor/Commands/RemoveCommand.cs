@@ -16,17 +16,28 @@ namespace GraphicsEditor
             this.picture = picture;
         }
 
-        public void Execute(params string[] parameters)
+        public void Execute(params string[] args)
         {
-            if (parameters.Length == 0)
+            if (args.Length == 0)
             {
                 Console.WriteLine("Введите номера фигур, которые нужно удалить");
                 return;
             }
-            int[] args = Array.ConvertAll(parameters, Int32.Parse);
-            Array.Sort(args);
-            Array.Reverse(args);
-            foreach(var index in args)
+
+            int[] parameters = new int[args.Length];
+            try
+            {
+                parameters = Array.ConvertAll(args, Int32.Parse);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Произошла ошибка при попытке распарсить аргументы: {e.Message}");
+                return;
+            }
+
+            Array.Sort(parameters);
+            Array.Reverse(parameters);
+            foreach(var index in parameters)
             {
                 if (index >= picture.ShapesCount || index < 0)
                 {

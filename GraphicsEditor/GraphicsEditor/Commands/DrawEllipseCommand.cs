@@ -62,6 +62,21 @@ namespace GraphicsEditor
                     parseSuccess = false;
                     continue;
                 }
+                if (i == 2 || i == 3)
+                {
+                    if (tmp > 1000000000 - parameters[0] || tmp > 1000000000 - parameters[1])
+                    {
+                        exceptions.Add($"Ось '{parameter}' - слишком большая");
+                        parseSuccess = false;
+                        continue;
+                    }
+                    if (tmp <= 0)
+                    {
+                        exceptions.Add($"{parameter} - Ось не может быть меньше/равна нулю!");
+                        parseSuccess = false;
+                        continue;
+                    }
+                }
                 if (i == 4)
                 {
                     if (tmp > 1000000000 - parameters[0] || tmp > 1000000000 - parameters[1])
@@ -70,9 +85,9 @@ namespace GraphicsEditor
                         parseSuccess = false;
                         continue;
                     }
-                    if (tmp < 0)
+                    if (tmp <= 0)
                     {
-                        exceptions.Add("Радиус не может быть меньше нуля!");
+                        exceptions.Add($"{parameter} - Радиус не может быть меньше/равен нулю!");
                         parseSuccess = false;
                         continue;
                     }

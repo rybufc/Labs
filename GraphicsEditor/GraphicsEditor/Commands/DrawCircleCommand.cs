@@ -70,9 +70,9 @@ namespace GraphicsEditor
                         parseSuccess = false;
                         continue;
                     }
-                    if (tmp < 0)
+                    if (tmp <= 0)
                     {
-                        exceptions.Add("Радиус не может быть меньше нуля!");
+                        exceptions.Add($"{parameter} - Радиус не может быть меньше/равен нулю!");
                         parseSuccess = false;
                         continue;
                     }
