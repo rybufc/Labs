@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using ConsoleUI;
 using System.Drawing;
+using GraphicsEditor.Commands;
 
 namespace GraphicsEditor
 {
@@ -43,33 +44,13 @@ namespace GraphicsEditor
             {
                 var parameter = args[i];
                 float tmp;
-                bool parseResult = Single.TryParse(args[i], out tmp);
-                if (!parseResult)
-                {
-                    exceptions.Add($"Параметр '{parameter}' - не является числом типа float");
-                    parseSuccess = false;
-                    continue;
-                }
-                if (tmp > 1000000000)
-                {
-                    exceptions.Add($"Параметр '{parameter}' - слишком большой.");
-                    parseSuccess = false;
-                    continue;
-                }
-                if (tmp < -1000000000)
-                {
-                    exceptions.Add($"Параметр '{parameter}' - слишком маленький.");
-                    parseSuccess = false;
-                    continue;
-                }
+                if (CommandsHelpers.TryParseArgs(args, i, exceptions, parameter, out tmp, ref parseSuccess)) continue;
+                if (CommandsHelpers.CheckForPresenceInRange(tmp, exceptions, parameter, ref parseSuccess)) continue;
                 parameters[i] = tmp;
             }
             if (!parseSuccess)
             {
-                foreach (var exceptionMessage in exceptions)
-                {
-                    Console.WriteLine(exceptionMessage);
-                }
+                CommandsHelpers.WriteErrorMessages(exceptions);
                 return true;
             }
             return false;

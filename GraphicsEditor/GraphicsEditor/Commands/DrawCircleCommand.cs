@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using ConsoleUI;
+using GraphicsEditor.Commands;
 
 namespace GraphicsEditor
 {
@@ -42,49 +43,36 @@ namespace GraphicsEditor
             {
                 var parameter = args[i];
                 float tmp;
-                bool parseResult = Single.TryParse(args[i], out tmp);
-                if (!parseResult)
-                {
-                    exceptions.Add($"Параметр '{parameter}' - не является числом типа float");
-                    parseSuccess = false;
-                    continue;
-                }
-                if (tmp > 1000000000)
-                {
-                    exceptions.Add($"Параметр '{parameter}' - слишком большой.");
-                    parseSuccess = false;
-                    continue;
-                }
-                if (tmp < -1000000000)
-                {
-                    exceptions.Add($"Параметр '{parameter}' - слишком маленький.");
-                    parseSuccess = false;
-                    continue;
-                }
-                if (i == 2)
-                {
-                    if (tmp > 1000000000 - parameters[0] || tmp > 1000000000 - parameters[1])
-                    {
-                        exceptions.Add($"Радиус '{parameter}' - слишком большой");
-                        parseSuccess = false;
-                        continue;
-                    }
-                    if (tmp <= 0)
-                    {
-                        exceptions.Add($"{parameter} - Радиус не может быть меньше/равен нулю!");
-                        parseSuccess = false;
-                        continue;
-                    }
-                }
+                if (CommandsHelpers.TryParseArgs(args, i, exceptions, parameter, out tmp, ref parseSuccess)) continue;
+                if (CommandsHelpers.CheckForPresenceInRange(tmp, exceptions, parameter, ref parseSuccess)) continue;
+                if (SpecialConditions(parameters, i, tmp, exceptions, parameter, ref parseSuccess)) continue;
                 parameters[i] = tmp;
             }
             if (!parseSuccess)
             {
-                foreach (var exceptionMessage in exceptions)
-                {
-                    Console.WriteLine(exceptionMessage);
-                }
+                CommandsHelpers.WriteErrorMessages(exceptions);
                 return true;
+            }
+            return false;
+        }
+
+        private static bool SpecialConditions(float[] parameters, int i, float tmp, List<string> exceptions, string parameter,
+            ref bool parseSuccess)
+        {
+            if (i == 2)
+            {
+                if (tmp > 1000000 - parameters[0] || tmp > 1000000 - parameters[1])
+                {
+                    exceptions.Add($"Радиус '{parameter}' - слишком большой");
+                    parseSuccess = false;
+                    return true;
+                }
+                if (tmp <= 0)
+                {
+                    exceptions.Add($"{parameter} - Радиус не может быть меньше/равен нулю!");
+                    parseSuccess = false;
+                    return true;
+                }
             }
             return false;
         }
