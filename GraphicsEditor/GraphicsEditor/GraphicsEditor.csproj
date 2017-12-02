@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Commands\ChangeColorCommand.cs" />
     <Compile Include="Commands\ChangeWidthCommand.cs" />
+    <Compile Include="Commands\CommandsHelpers.cs" />
     <Compile Include="GraphicPrimitives\Circle.cs" />
     <Compile Include="Commands\DrawCircleCommand.cs" />
     <Compile Include="Commands\DrawEllipseCommand.cs" />
